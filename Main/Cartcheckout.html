@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="Aboutus.css">
+        <div class="header" >
+            <div class="header-content" onclick="location.href='../index.html'">
+                <img src="../Images/logo.jpg" alt="Logo" class="logo" onclick="location.href='../index.html'">        
+            <h2>Super Saver</h2>
+        </div>
+        <div class="header-container" >
+            <button class="button" onclick="location.href='../Main/ProductsServices.html'" >Shop</button>
+            <button class="button" onclick="location.href='../Main/Cartcheckout.html'" >Cart/Checkout</button>
+            <button class="button" onclick="location.href='../Main/Contactus.html'" >Contact Us</button>
+            <button class="button" onclick="location.href='../Main/Aboutus.html'" >About Us</button>
+            <button class="button" onclick="location.href='../Main/login.html'" >Login</button>
+            </div>
+    </div>
+</head>
+<body>
+    <script>
+        window.onload = function() {
+            if (!localStorage.getItem("authToken")) {
+                // Redirect to login page if not authenticated
+                window.location.href = 'Main/login.html';
+            }
+        };
+    </script>
+    <div class="CenterPage">
+        <div class="bigtext">
+            <p>Checkout WIP</p>
+            
+        </div>
+    </div>
+
+
+<body>
+
+<footer> 
+    <div class="footer">
+        <p> Copyrighted by SuperSaviors.inc</p>
+    </div>
+</footer>
+
+<script scr="login.js"></script>

@@ -1,0 +1,76 @@
+body {
+    background-image: url('../Images/background2.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat; /* Repeat the background when scrolling */
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    font-size: 16px;
+}
+.bigtext {
+    font-size: 50px;
+    
+
+}
+.logo {
+    height: 50px;
+    width: auto;
+}
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #000000;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #000000;
+    color: white;
+    text-align: center;
+    padding: 0px;
+}
+
+.button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 10px;
+    background-color: #000000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    flex: 1;
+    text-align: center;
+}
+.button:hover {
+    background-color: #4a525a;
+}
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    padding-left: 20px;
+}
+.CenterPage {
+    position: fixed;
+    top: 30%; 
+    left: 50%;
+    transform: translate(-50%, -30%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

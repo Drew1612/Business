@@ -20,6 +20,14 @@
     </div>
 </head>
 <body>
+    <script>
+        window.onload = function() {
+            if (!localStorage.getItem("authToken")) {
+                // Redirect to login page if not authenticated
+                window.location.href = 'Main/login.html';
+            }
+        };
+    </script>
     <div class="CenterPage">
         <div class="bigtext">
             <h2>CONTACTABLE THROUGH</h2>
@@ -38,4 +46,4 @@
     </div>
 </footer>
 
-<script scr="script.js"></script>
+<script scr="login.js"></script>

@@ -20,6 +20,14 @@
     </div>
 </head>
 <body>
+    <script>
+        window.onload = function() {
+            if (!localStorage.getItem("authToken")) {
+                // Redirect to login page if not authenticated
+                window.location.href = 'Main/login.html';
+            }
+        };
+    </script>
     <div class="CenterPage">
         <div class="bigtext">
             <p>Equitable people Doing Right by You</p>
