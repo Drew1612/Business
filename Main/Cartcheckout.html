@@ -3,45 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <link rel="stylesheet" href="Aboutus.css">
-        <div class="header" >
-            <div class="header-content" onclick="location.href='../index.html'">
-                <img src="../Images/logo.jpg" alt="Logo" class="logo" onclick="location.href='../index.html'">        
+    <title>Cart/Checkout</title>
+    <link rel="stylesheet" href="Cartcheckout.css">
+    <div class="header">
+        <div class="header-content" onclick="location.href='../index.html'">
+            <img src="../Images/logo.jpg" alt="Logo" class="logo" onclick="location.href='../index.html'">        
             <h2>Super Saver</h2>
         </div>
-        <div class="header-container" >
-            <button class="button" onclick="location.href='../Main/ProductsServices.html'" >Shop</button>
-            <button class="button" onclick="location.href='../Main/Cartcheckout.html'" >Cart/Checkout</button>
-            <button class="button" onclick="location.href='../Main/Contactus.html'" >Contact Us</button>
-            <button class="button" onclick="location.href='../Main/Aboutus.html'" >About Us</button>
-            <button class="button" onclick="location.href='../Main/login.html'" >Login</button>
-            </div>
+        <div class="header-container">
+            <button class="button" onclick="location.href='../Main/ProductsServices.html'">Shop</button>
+            <button class="button" onclick="location.href='../Main/Cartcheckout.html'">Cart/Checkout</button>
+            <button class="button" onclick="location.href='../Main/Contactus.html'">Contact Us</button>
+            <button class="button" onclick="location.href='../Main/Aboutus.html'">About Us</button>
+            <button class="button" onclick="location.href='../Main/login.html'">Login</button>
+        </div>
     </div>
 </head>
 <body>
-    <script>
-        window.onload = function() {
-            if (!localStorage.getItem("authToken")) {
-                // Redirect to login page if not authenticated
-                window.location.href = 'Main/login.html';
-            }
-        };
-    </script>
-    <div class="CenterPage">
-        <div class="bigtext">
-            <p>Checkout WIP</p>
-            
+    <div class="cart-container">
+        <h3>Your Cart</h3>
+        <ul id="cart-items"></ul>
+        <p id="total-price">Total: $0.00</p>
+        <button onclick="checkout()">Checkout</button>
+    </div>
+
+    <!-- The Modal for Credit Card Input -->
+    <div id="checkoutModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h3>Enter Credit Card Details</h3>
+            <form id="creditCardForm" onsubmit="confirmPurchase(event)">
+                <input type="text" id="cardName" placeholder="Cardholder Name" required><br>
+                <input type="number" id="cardNumber" placeholder="Card Number" required><br>
+                <input type="text" id="expiryDate" placeholder="Expiry Date (MM/YY)" required><br>
+                <input type="number" id="cvv" placeholder="CVV" required><br>
+                <div id="checkout-summary">
+                    <!-- Summary of Total Price, Shipping, and Tax will appear here -->
+                </div>
+                <input type="submit" value="Confirm Purchase">
+            </form>
         </div>
     </div>
 
+    <script>
+        let shippingFee = 5;
+        let taxRate = 0.06; // PA Sales Tax
 
-<body>
+        window.onload = function() {
+            displayCart();
+        };
 
-<footer> 
-    <div class="footer">
-        <p> Copyrighted by SuperSaviors.inc</p>
-    </div>
-</footer>
+        // Function to display cart contents and total price
+        function displayCart() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartItemsContainer = document.getElementById('cart-items');
+            let total = 0;
 
-<script scr="login.js"></script>
+            // Clear existing cart items
+            cartItemsContainer.innerHTML = '';
+
+            cart.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = `${item.name} - $${item.price}`;
+                cartItemsContainer.appendChild(li);
+                total += item.price;
+            });
+
+            // Update the total price display
+            document.getElementById('total-price').textContent = `Total: $${total.toFixed(2)}`;
+        }
+
+        // Function to handle checkout and show modal
+        function checkout() {
+            const total = parseFloat(document.getElementById('total-price').textContent.replace('Total: $', ''));
+            const shipping = shippingFee;
+            const tax = total * taxRate;
+            const finalTotal = total + shipping + tax;
+
+            // Update the modal with summary details
+            document.getElementById('checkout-summary').innerHTML = `
+                Shipping: $${shipping.toFixed(2)}<br>
+                Tax (PA): $${tax.toFixed(2)}<br>
+                <strong>Total: $${finalTotal.toFixed(2)}</strong>
+            `;
+
+            // Show the modal
+            document.getElementById('checkoutModal').style.display = "block";
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            document.getElementById('checkoutModal').style.display = "none";
+        }
+
+        // Function to handle purchase confirmation
+        function confirmPurchase(event) {
+            event.preventDefault(); // Prevent form submission
+
+            const cardName = document.getElementById('cardName').value;
+            const cardNumber = document.getElementById('cardNumber').value;
+            const expiryDate = document.getElementById('expiryDate').value;
+            const cvv = document.getElementById('cvv').value;
+
+            if (cardName && cardNumber && expiryDate && cvv) {
+                alert('Purchase confirmed! Thank you for your order.');
+                localStorage.removeItem('cart'); // Clear the cart after purchase
+                displayCart(); // Update the cart display
+                closeModal(); // Close the modal
+            } else {
+                alert('Please fill in all fields.');
+            }
+        }
+    </script>
+
+    <footer> 
+        <div class="footer">
+            <p> Copyrighted by SuperSaviors.inc</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,5 +1,5 @@
 body {
-    background-image: url('../Images/background3.jpg');
+    background-image: url('../Images/background2.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: repeat; /* Repeat the background when scrolling */
@@ -10,15 +10,16 @@ body {
     text-align: center;
     font-size: 16px;
 }
-.bigtext {
-    font-size: 40px;
-    
 
+.bigtext {
+    font-size: 50px;
 }
+
 .logo {
     height: 50px;
     width: auto;
 }
+
 .header {
     position: fixed;
     top: 0;
@@ -31,8 +32,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    
 }
+
 .footer {
     position: fixed;
     bottom: 0;
@@ -55,9 +56,11 @@ body {
     flex: 1;
     text-align: center;
 }
+
 .button:hover {
     background-color: #4a525a;
 }
+
 .header-content {
     display: flex;
     align-items: center;
@@ -65,6 +68,7 @@ body {
     gap: 10px;
     padding-left: 20px;
 }
+
 .CenterPage {
     position: fixed;
     top: 30%; 
@@ -73,5 +77,42 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.cart-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    text-align: left;
+    width: 80%;
+    max-width: 600px;
+}
+
+.cart-item {
+    margin: 10px 0;
+}
+
+.total-price {
+    font-size: 20px;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.checkout-button {
+    background-color: #4CAF50;
     color: white;
+    font-size: 18px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.checkout-button:hover {
+    background-color: #45a049;
 }
