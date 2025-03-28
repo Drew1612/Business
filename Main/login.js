@@ -36,9 +36,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Redirect to login if not authenticated
-    if (!localStorage.getItem("authToken") && window.location.pathname !== "/Main/login.html") {
-        window.location.href = "../Main/login.html";
-    }
+   // if (!localStorage.getItem("authToken") && window.location.pathname !== "/Main/login.html") {
+ //       window.location.href = "../Main/login.html";
+//    }
 });
 
 // Hash password using SHA-256
